@@ -22,7 +22,7 @@ public class Storefront : MonoBehaviour
    
     [Header("General")]
     public GameObject packagePrefab;
-    public int money = 11;
+    public int money = 20;
     public bool lose;
     public Driver driver;
 
@@ -36,8 +36,8 @@ public class Storefront : MonoBehaviour
     public Text timerText;
     public float moneyTime;
     private float remainingDeliveryTime;
-    public float totalMoneyTime = 2.59f;
-    public float totalDeliveryTime = 10.0f;
+    public float totalMoneyTime = 2.5f;
+    public float totalDeliveryTime = 15.0f;
     public bool deliveryOngoing;  
 
     //Event is like when something special happens
@@ -72,18 +72,11 @@ public class Storefront : MonoBehaviour
         dropoffList = houseHolder.GetComponentsInChildren<Dropoff>(true).Select(dropOff => dropOff.transform).ToList();
         CreatePackage();
         //dropoffLocationsArray = new Transform[4];
-        //dropoffLocationsList = new List<Transform>();
-        
+        //dropoffLocationsList = new List<Transform>();        
     }
 
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            money -= 5;
-            driver.boostActivated = true;
-        }
-
+    {      
         ChangeMoney();
        
         if (deliveryOngoing && (remainingDeliveryTime > 0))
@@ -120,7 +113,7 @@ public class Storefront : MonoBehaviour
         // dropoffList[index] is basically the game object associated with the randomly chosen index from the line above
         Transform dropoffLocation = dropoffList[index];
         dropoffLocation.gameObject.SetActive(true);
-        //TODO: start timer
+
         remainingDeliveryTime = totalDeliveryTime;
         deliveryOngoing = true;
 
@@ -131,7 +124,7 @@ public class Storefront : MonoBehaviour
     {
         Debug.Log("Delivered Package");
         CreatePackage();
-        //TODO: End timer
+
         deliveryOngoing = false;
         timerText.text = "Package Delivery Successful";
         //Gives money
@@ -165,9 +158,3 @@ public class Storefront : MonoBehaviour
         }
     }
 }
-
-// Location of delivery
-//Location of pick up
-//Packages need to be specific
-//Time limit per job
-//Pay for job

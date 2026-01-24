@@ -51,6 +51,8 @@ public class BoostManager : MonoBehaviour
         {
             DeactivateAllBoosts();
             ActivateRandomBoost();
+            ActivateRandomBoost();
+            ActivateRandomBoost();
         }
     }
 }

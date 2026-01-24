@@ -16,8 +16,8 @@ public class DirectionIndicator : MonoBehaviour
         Storefront.Instance.onPackageDeliveryUnsuccessful.AddListener(PackageDeliveryUnsuccessful);
     }
 
-    public void OnDisable()
-    {
+    private void OnDestroy()
+    {      
         Storefront.Instance.onPackagePickedUp.RemoveListener(PackagePickedUp);
         Storefront.Instance.onPackageDeliverySuccessful.RemoveListener(PackageDeliverySuccessful);
         Storefront.Instance.onPackageDeliveryUnsuccessful.RemoveListener(PackageDeliveryUnsuccessful);
